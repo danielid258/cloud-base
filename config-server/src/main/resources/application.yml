@@ -1,0 +1,35 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+
+  #spring-cloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/danielid258/config-repo
+          username: danielid258
+          password: Daniel@100304
+          basedir: D:\config-rep\cloud-mall\config\basedir
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+
+
+# spring-cloud-starter-bus-amqp
+# When the configuration is modified and submitted to git repository, then callback config-server's /actuator/bus-refresh,
+# so the config-server will notify the config-client dynamically refresh those configuration that marked with @RefreshScope.
+
+# expose url:/actuator/bus-refresh
+# dynamically refresh configuration by: spring-cloud-starter-bus-amqp
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

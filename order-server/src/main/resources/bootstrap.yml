@@ -1,0 +1,37 @@
+server:
+  port: 8881
+
+spring:
+  application:
+    name: order-server
+
+  ######## spring-cloud-config-client ########
+  #Determine the configuration file according to ${spring.application.name} and ${spring.cloud.config.profile}profile
+  cloud:
+    config:
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: config-server
+
+  ######## spring-boot-starter-amqp ########
+  # on git repository
+  #message middleware: kafka, RabbitMQ, ActiveMQ ...
+#  rabbitmq:
+#    host: 127.0.0.1
+#    port: 5672
+#    username: guest
+#    password: guest
+
+
+######## spring-cloud-starter-netflix-eureka-client ########
+# on git repository
+#When eureka-server uses the default port 8761, the configuration of eureka-client can be configured into git repository. If not, must configure it in bootstrap.yml,
+#otherwise eureka-client cannot find the eureka registry.
+#eureka:
+#  instance:
+#    hostname: 127.0.0.1
+#  client:
+#    service-url:
+#      defaultZone: http://${eureka.instance.hostname}:8762/eureka/
+
